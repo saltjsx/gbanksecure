@@ -16,7 +16,7 @@ $(document).ready(function () {
     };
 
     // Store the customer details in local storage
-    localStorage.setItem("customerDetails", JSON.stringify(customer));
+    localStorage.setItem("customer", JSON.stringify(customer));
 
     // Now, navigate to the details page
     window.location.href = "details.html";
@@ -25,17 +25,17 @@ $(document).ready(function () {
   // This part runs when the details page loads
   // It checks for an element that only exists on the details page
   if ($("#detFirstname").length) {
-    const customerDetails = JSON.parse(localStorage.getItem("customerDetails"));
+    const customer = JSON.parse(localStorage.getItem("customer"));
 
-    if (customerDetails) {
-      $("#detFirstname").text(customerDetails.firstName);
-      $("#detLastName").text(customerDetails.lastName);
-      $("#detEmail").text(customerDetails.email);
-      $("#detDob").text(customerDetails.dateOfBirth);
-      $("#detPhone").text(customerDetails.phone);
-      $("#detAddress").text(customerDetails.address);
-      $("#detConfirmPassword").text(customerDetails.password);
-      $("#detCustomerId").text(customerDetails.customerID);
+    if (customer) {
+      $("#detFirstname").text(customer.firstName);
+      $("#detLastName").text(customer.lastName);
+      $("#detEmail").text(customer.email);
+      $("#detDob").text(customer.dateOfBirth);
+      $("#detPhone").text(customer.phone);
+      $("#detAddress").text(customer.address);
+      $("#detConfirmPassword").text(customer.password);
+      $("#detCustomerId").text(customer.customerID);
     }
   }
 });
