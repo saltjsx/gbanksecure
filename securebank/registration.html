@@ -36,7 +36,15 @@
         required
       />
       <br /><br />
-      <button type="submit" id="registerButton">
+      <label for="accountType">Account Type:</label>
+ <input type="radio" id="saveveryday" name="accountType" value="saveveryday">
+ <label for="html">SAVEveryday</label><br>
+ <input type="radio" id="goonplus" name="accountType" value="goonplus">
+ <label for="goonplus">Goon+ Super Saver</label><br>
+ <input type="radio" id="creditmax" name="accountType" value="creditmax">
+ <label for="creditmax">CreditMax</label>
+      <br /><br />
+      <button type="submit" id="registerButton" onclick="register()">
         <a href="./details.html">Register</a>
       </button>
     </form>
