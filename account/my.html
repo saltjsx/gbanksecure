@@ -26,7 +26,7 @@
         <a href="../index.html">Home</a>
         <a href="../accounts.html">Accounts</a>
         <a href="./sso.html">Login</a>
-        <a href="#" onclick="logout()">Logout</a>
+        <a href="#" data-action="logout">Logout</a>
       </div>
 
       <div class="main-content">
@@ -69,36 +69,36 @@
         <center>
           <button
             class="submit-button"
-            onclick="showTransferForm()"
+            data-action="showTransferForm"
             title="Alt+T"
           >
             Transfer Funds
           </button>
           <button
             class="submit-button"
-            onclick="showDepositForm()"
+            data-action="showDepositForm"
             title="Alt+D"
           >
             Deposit
           </button>
           <button
             class="submit-button"
-            onclick="showWithdrawForm()"
+            data-action="showWithdrawForm"
             title="Alt+W"
           >
             Withdraw
           </button>
-          <button class="submit-button" onclick="showBillPayForm()">
+          <button class="submit-button" data-action="showBillPayForm">
             Pay Bills
           </button>
           <button
             class="submit-button"
-            onclick="toggleTransactionHistory()"
+            data-action="toggleTransactionHistory"
             title="Alt+H"
           >
             Transaction History
           </button>
-          <button class="submit-button" onclick="refreshDashboard()">
+          <button class="submit-button" data-action="refreshDashboard">
             Refresh
           </button>
         </center>
@@ -112,19 +112,16 @@
           Credit Card Management
         </div>
         <center id="credit-card-buttons" style="display: none">
-          <button class="submit-button" onclick="showCreditCardForm()">
+          <button class="submit-button" data-action="showCreditCardForm">
             Make Credit Payment
           </button>
-          <button class="submit-button" onclick="showCreditCardStatement()">
+          <button class="submit-button" data-action="showCreditCardStatement">
             View Credit Statement
           </button>
-          <button class="submit-button" onclick="requestCreditIncrease()">
+          <button class="submit-button" data-action="requestCreditIncrease">
             Request Credit Increase
           </button>
-          <button
-            class="submit-button"
-            onclick="document.getElementById('credit-charge-form').style.display = 'block'; hideAllForms();"
-          >
+          <button class="submit-button" data-action="showCreditChargeForm">
             Make Purchase
           </button>
         </center>

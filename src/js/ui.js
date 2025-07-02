@@ -170,6 +170,15 @@ function showChangePassword() {
   document.getElementById("change-password-form").style.display = "block";
 }
 
+function showCreditCardForm() {
+  hideAllForms();
+  document.getElementById("credit-card-form").style.display = "block";
+}
+
+function showCreditCardStatement() {
+  showPopup("This feature is not yet implemented.", "Coming Soon");
+}
+
 function hideAllForms() {
   const forms = [
     "transfer-form",
@@ -291,4 +300,8 @@ function loadAccountDashboard() {
     console.error("Error loading dashboard:", error);
     // Maybe show a user-friendly error message
   }
+}
+
+function printAccountDetails() {
+  window.print();
 }
