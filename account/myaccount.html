@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SecureBanking - My Account</title>
+    <link
+      href="../src/styles/securebank.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://pngimg.com/d/letter_g_PNG5.png"
+          alt="Gbank Logo"
+          class="logo"
+        />
+        <h1>SecureBanking Online Account Services</h1>
+      </div>
+
+      <div class="nav-bar">
+        <a href="../index.html">Home</a>
+        <a href="../accounts.html">Accounts</a>
+        <a href="./sso.html">Member Login</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+
+      <div class="main-content">
+        <div class="section-header">Account Successfully Created!</div>
+
+        <div class="info-box">
+          <strong>Welcome to SecureBanking!</strong> Your account has been
+          successfully created. Please save your Customer ID for future logins.
+        </div>
+
+        <div id="account-details">
+          <!-- Account details will be populated by JavaScript -->
+        </div>
+
+        <div class="section-header">Important Information</div>
+
+        <table class="form-table">
+          <tr>
+            <td class="label-cell">Customer ID:</td>
+            <td><strong id="customer-id-display"></strong></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Account Status:</td>
+            <td><strong style="color: #008000">Active</strong></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Account Opening Date:</td>
+            <td id="account-date"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Selected Account Type:</td>
+            <td id="account-type-display"></td>
+          </tr>
+        </table>
+
+        <div class="info-box">
+          <strong>Next Steps:</strong>
+          <ul style="margin: 10px 0; padding-left: 20px">
+            <li>
+              Write down your Customer ID: <span id="customer-id-note"></span>
+            </li>
+            <li>Check your email for account activation instructions</li>
+            <li>
+              Visit any Gbank branch with valid ID to activate your debit card
+            </li>
+            <li>Set up online banking security questions</li>
+          </ul>
+        </div>
+
+        <center>
+          <button
+            class="submit-button"
+            onclick="window.location.href='./sso.html'"
+          >
+            Login to Online Banking
+          </button>
+          <button class="submit-button" onclick="printAccountDetails()">
+            Print Account Details
+          </button>
+        </center>
+
+        <div class="powered-by">
+          Powered by SecureBanking Online Services | Need help?
+          <a href="./sso.html">Contact Support</a>
+        </div>
+      </div>
+
+      <div class="footer" id="footer">
+        &copy; 2025 SecureBanking Online Services - Official Gbank Account
+        Processing Partner
+      </div>
+    </div>
+
+    <!-- Biometric and OTP Modals -->
+    <div id="biometric-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">Biometric Verification</div>
+        <div class="modal-content">
+          <p>Place your finger on the scanner to verify your identity.</p>
+          <div id="biometric-scanner">
+            <div class="fingerprint"></div>
+            <div class="scan-line"></div>
+          </div>
+          <p id="biometric-status">Scanning...</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="otp-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">OTP Verification</div>
+        <div class="modal-content">
+          <p>For your security, please enter the OTP displayed below.</p>
+          <p>Your One-Time Password is: <strong id="otp-display"></strong></p>
+          <input
+            type="text"
+            id="otp-input"
+            class="otp-input"
+            placeholder="Enter OTP"
+          />
+        </div>
+        <div class="modal-footer">
+          <button id="otp-submit-btn" class="submit-button">Verify</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../src/js/utils.js"></script>
+    <script src="../src/js/ui.js"></script>
+    <script src="../src/js/banking.js"></script>
+    <script src="../src/js/auth.js"></script>
+    <script src="../src/js/main.js"></script>
+  </body>
+</html>

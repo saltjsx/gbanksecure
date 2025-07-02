@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SecureBanking - Gbank Account Signup</title>
+    <link
+      href="../src/styles/securebank.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://pngimg.com/d/letter_g_PNG5.png"
+          alt="Gbank Logo"
+          class="logo"
+        />
+        <h1>SecureBanking Online Account Services</h1>
+      </div>
+
+      <div class="nav-bar">
+        <a href="../index.html">Home</a>
+        <a href="../accounts.html">Accounts</a>
+        <a href="./sso.html">Member Login</a>
+      </div>
+
+      <div class="main-content">
+        <div class="section-header">
+          Gbank Account Registration - New Customer Signup
+        </div>
+
+        <div class="info-box">
+          <strong>Welcome to SecureBanking!</strong> Please complete all
+          required fields marked with <span class="required">*</span> to open
+          your new Gbank account. Processing time is typically 1-2 business
+          days.
+        </div>
+
+        <form onsubmit="handleSignup(event)">
+          <div class="section-header">Personal Information</div>
+          <table class="form-table">
+            <tr>
+              <td class="label-cell">
+                First Name <span class="required">*</span>:
+              </td>
+              <td>
+                <input type="text" name="firstName" required id="firstName" />
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">
+                Last Name <span class="required">*</span>:
+              </td>
+              <td>
+                <input type="text" name="lastName" required id="lastName" />
+              </td>
+            </tr>
+            <tr>
+              <td class="label-cell">
+                Email Address <span class="required">*</span>:
+              </td>
+              <td><input type="email" name="email" required id="email" /></td>
+            </tr>
+            <tr>
+              <td class="label-cell">
+                Phone Number <span class="required">*</span>:
+              </td>
+              <td><input type="tel" name="phone" required id="phone" /></td>
+            </tr>
+            <tr>
+              <td class="label-cell">
+                Date of Birth <span class="required">*</span>:
+              </td>
+              <td>
+                <input type="date" name="dateOfBirth" required id="dob" />
+              </td>
+            </tr>
+          </table>
+
+          <div class="section-header">Account Selection</div>
+          <div class="account-cards-container">
+            <div class="account-cards">
+              <div
+                class="account-card"
+                onclick="selectAccount('saveeveryday', event)"
+              >
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="saveeveryday"
+                  id="saveeveryday"
+                  required
+                />
+                <h3>SAVEveryday</h3>
+                <div class="price">$7.50/month</div>
+                <div class="description">
+                  Complete banking solution with 0.5% interest p.a. Save and
+                  spend with one account.
+                </div>
+              </div>
+
+              <div
+                class="account-card"
+                onclick="selectAccount('goonsaver', event)"
+              >
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="goonsaver"
+                  id="goonsaver"
+                  required
+                />
+                <h3>Goon+ Super Saver</h3>
+                <div class="price">$80/week</div>
+                <div class="description">
+                  Premium savings with 3% interest! Top rates in the country.
+                  Limited time offer!
+                </div>
+              </div>
+
+              <div
+                class="account-card"
+                onclick="selectAccount('credit', event)"
+              >
+                <input
+                  type="radio"
+                  name="accountType"
+                  value="credit"
+                  id="credit"
+                  required
+                />
+                <h3>Credit Account</h3>
+                <div class="price">$150/year</div>
+                <div class="description">
+                  Credit solutions designed to reduce your mortgage costs.
+                  Professional lending services.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-header">Security Settings</div>
+          <table class="form-table">
+            <tr>
+              <td class="label-cell">
+                Password <span class="required">*</span>:
+              </td>
+              <td><input type="password" name="password" required /></td>
+            </tr>
+            <tr>
+              <td class="label-cell">
+                Confirm Password <span class="required">*</span>:
+              </td>
+              <td>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  required
+                  id="confirmPassword"
+                />
+              </td>
+            </tr>
+          </table>
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms"
+              ><span class="required">*</span> I have read and agree to the
+              Gbank Terms and Conditions and Privacy Policy</label
+            >
+          </div>
+
+          <div class="checkbox-container">
+            <input type="checkbox" id="marketing" name="marketing" />
+            <label for="marketing"
+              >I would like to receive promotional offers and updates from
+              Gbank</label
+            >
+          </div>
+
+          <center>
+            <button type="submit" class="submit-button">
+              Submit Application
+            </button>
+            <button type="reset" class="submit-button">Clear Form</button>
+          </center>
+        </form>
+
+        <div class="powered-by">
+          Powered by SecureBanking Online Services | Existing customers:
+          <a href="./sso.html">Login Here</a>
+        </div>
+      </div>
+
+      <div class="footer" id="footer">
+        &copy; 2025 SecureBanking Online Services - Official Gbank Account
+        Processing Partner
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../src/js/utils.js"></script>
+    <script src="../src/js/ui.js"></script>
+    <script src="../src/js/banking.js"></script>
+    <script src="../src/js/auth.js"></script>
+    <script src="../src/js/main.js"></script>
+  </body>
+</html>

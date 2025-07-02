@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SecureBanking - My Account Dashboard</title>
+    <link
+      href="../src/styles/securebank.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://pngimg.com/d/letter_g_PNG5.png"
+          alt="Gbank Logo"
+          class="logo"
+        />
+        <h1>SecureBanking Online Account Management</h1>
+      </div>
+
+      <div class="nav-bar">
+        <a href="../index.html">Home</a>
+        <a href="../accounts.html">Accounts</a>
+        <a href="./sso.html">Login</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </div>
+
+      <div class="main-content">
+        <div class="section-header">Account Dashboard</div>
+
+        <div class="info-box">
+          <strong>Welcome back!</strong> Manage your accounts, transfer funds,
+          and view transaction history.
+        </div>
+
+        <!-- Account Summary -->
+        <div class="section-header">Account Summary</div>
+        <table class="form-table">
+          <tr>
+            <td class="label-cell">Customer ID:</td>
+            <td><strong id="customer-id-display"></strong></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Account Type:</td>
+            <td id="account-type-display"></td>
+          </tr>
+          <tr>
+            <td class="label-cell">Current Balance:</td>
+            <td>
+              <strong style="color: #008000" id="balance-display">$0.00</strong>
+            </td>
+          </tr>
+          <tr>
+            <td class="label-cell">Available Credit:</td>
+            <td id="credit-display">$0.00</td>
+          </tr>
+          <tr>
+            <td class="label-cell">Last Login:</td>
+            <td id="last-login"></td>
+          </tr>
+        </table>
+
+        <!-- Quick Actions -->
+        <div class="section-header">Quick Actions</div>
+        <center>
+          <button
+            class="submit-button"
+            onclick="showTransferForm()"
+            title="Alt+T"
+          >
+            Transfer Funds
+          </button>
+          <button
+            class="submit-button"
+            onclick="showDepositForm()"
+            title="Alt+D"
+          >
+            Deposit
+          </button>
+          <button
+            class="submit-button"
+            onclick="showWithdrawForm()"
+            title="Alt+W"
+          >
+            Withdraw
+          </button>
+          <button class="submit-button" onclick="showBillPayForm()">
+            Pay Bills
+          </button>
+          <button
+            class="submit-button"
+            onclick="toggleTransactionHistory()"
+            title="Alt+H"
+          >
+            Transaction History
+          </button>
+          <button class="submit-button" onclick="refreshDashboard()">
+            Refresh
+          </button>
+        </center>
+
+        <!-- Credit Card Management (Only for Credit Account holders) -->
+        <div
+          class="section-header"
+          id="credit-card-section"
+          style="display: none"
+        >
+          Credit Card Management
+        </div>
+        <center id="credit-card-buttons" style="display: none">
+          <button class="submit-button" onclick="showCreditCardForm()">
+            Make Credit Payment
+          </button>
+          <button class="submit-button" onclick="showCreditCardStatement()">
+            View Credit Statement
+          </button>
+          <button class="submit-button" onclick="requestCreditIncrease()">
+            Request Credit Increase
+          </button>
+          <button
+            class="submit-button"
+            onclick="document.getElementById('credit-charge-form').style.display = 'block'; hideAllForms();"
+          >
+            Make Purchase
+          </button>
+        </center>
+
+        <!-- Transaction Forms (Initially Hidden) -->
+        <div id="transfer-form" style="display: none">
+          <div class="section-header">Transfer Funds</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Transfer Type:</td>
+                <td>
+                  <select
+                    name="transferType"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="internal">Between My Accounts</option>
+                    <option value="external">To External Account</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Amount ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Recipient Account:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="recipientAccount"
+                    placeholder="Account Number"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Description:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="description"
+                    placeholder="Transfer description"
+                  />
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Process Transfer
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <div id="deposit-form" style="display: none">
+          <div class="section-header">Make Deposit</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Deposit Type:</td>
+                <td>
+                  <select
+                    name="depositType"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="cash">Cash Deposit</option>
+                    <option value="check">Check Deposit</option>
+                    <option value="direct">Direct Deposit</option>
+                    <option value="wire">Wire Transfer</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Amount ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Reference:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="reference"
+                    placeholder="Check number or reference"
+                  />
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Process Deposit
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <div id="withdraw-form" style="display: none">
+          <div class="section-header">Make Withdrawal</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Withdrawal Type:</td>
+                <td>
+                  <select
+                    name="withdrawType"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="atm">ATM Withdrawal</option>
+                    <option value="branch">Branch Withdrawal</option>
+                    <option value="online">Online Transfer</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Amount ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">PIN/Password:</td>
+                <td>
+                  <input
+                    type="password"
+                    name="pin"
+                    placeholder="Enter PIN"
+                    required
+                  />
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Process Withdrawal
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <div id="billpay-form" style="display: none">
+          <div class="section-header">Pay Bills</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Payee:</td>
+                <td>
+                  <select
+                    name="payee"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="electricity">Electricity Company</option>
+                    <option value="gas">Gas Company</option>
+                    <option value="internet">Internet Provider</option>
+                    <option value="phone">Phone Company</option>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="mortgage">Mortgage</option>
+                    <option value="other">Other</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Amount ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Account Number:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="accountNumber"
+                    placeholder="Payee account number"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Due Date:</td>
+                <td><input type="date" name="dueDate" required /></td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Schedule Payment
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <!-- Transaction History -->
+        <div id="transaction-history" style="display: none">
+          <div class="section-header">Transaction History</div>
+          <center style="margin-bottom: 10px">
+            <button class="submit-button" onclick="exportTransactionHistory()">
+              Export to CSV
+            </button>
+            <button class="submit-button" onclick="hideAllForms()">
+              Close
+            </button>
+          </center>
+          <div id="transaction-list">
+            <!-- Transactions will be populated here -->
+          </div>
+        </div>
+
+        <!-- Account Settings -->
+        <div class="section-header">Account Settings</div>
+        <center>
+          <button class="submit-button" onclick="showChangePassword()">
+            Change Password
+          </button>
+          <button class="submit-button" onclick="showNotificationSettings()">
+            Notification Settings
+          </button>
+          <button class="submit-button" onclick="downloadStatement()">
+            Download Statement
+          </button>
+          <button class="submit-button" onclick="showAccountUpgrade()">
+            Upgrade Account
+          </button>
+        </center>
+
+        <div id="change-password-form" style="display: none">
+          <div class="section-header">Change Password</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Current Password:</td>
+                <td>
+                  <input type="password" name="currentPassword" required />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">New Password:</td>
+                <td><input type="password" name="newPassword" required /></td>
+              </tr>
+              <tr>
+                <td class="label-cell">Confirm Password:</td>
+                <td>
+                  <input type="password" name="confirmPassword" required />
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Update Password
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <!-- Credit Card Payment Form -->
+        <div id="credit-card-form" style="display: none">
+          <div class="section-header">Make Credit Card Payment</div>
+          <form>
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Payment Type:</td>
+                <td>
+                  <select
+                    name="paymentType"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="minimum">Minimum Payment</option>
+                    <option value="statement">Statement Balance</option>
+                    <option value="custom">Custom Amount</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Payment Amount ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="amount"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Payment From:</td>
+                <td>
+                  <select
+                    name="paymentSource"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="checking">Checking Account</option>
+                    <option value="savings">Savings Account</option>
+                    <option value="external">External Bank Account</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Process Payment
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <!-- Credit Card Purchase Form -->
+        <div id="credit-charge-form" style="display: none">
+          <div class="section-header">Make Credit Card Purchase</div>
+          <form onsubmit="processCreditCardCharge(event)">
+            <table class="form-table">
+              <tr>
+                <td class="label-cell">Product Name:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="product"
+                    placeholder="Enter product name"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Vendor/Store:</td>
+                <td>
+                  <input
+                    type="text"
+                    name="vendor"
+                    placeholder="Store or vendor name"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Cost ($):</td>
+                <td>
+                  <input
+                    type="number"
+                    name="cost"
+                    step="0.01"
+                    min="0.01"
+                    required
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="label-cell">Category:</td>
+                <td>
+                  <select
+                    name="category"
+                    required
+                    style="width: 200px; padding: 2px; border: 1px solid #999"
+                  >
+                    <option value="groceries">Groceries</option>
+                    <option value="gas">Gas Station</option>
+                    <option value="dining">Dining & Restaurants</option>
+                    <option value="shopping">Shopping</option>
+                    <option value="travel">Travel</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="bills">Bills & Utilities</option>
+                    <option value="other">Other</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+            <center>
+              <button type="submit" class="submit-button">
+                Process Purchase
+              </button>
+              <button
+                type="button"
+                class="submit-button"
+                onclick="hideAllForms()"
+              >
+                Cancel
+              </button>
+            </center>
+          </form>
+        </div>
+
+        <div class="powered-by">
+          Secure banking powered by SecureBanking Online Services | Customer
+          Service: 1-800-GBANK-24
+        </div>
+      </div>
+
+      <div class="footer">
+        &copy; 2025 SecureBanking Online Services - Official Gbank Account
+        Processing Partner
+      </div>
+    </div>
+
+    <!-- Popup Notification System -->
+    <div
+      id="popup-overlay"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      "
+    >
+      <div
+        id="popup-container"
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: white;
+          border: 3px solid #0066cc;
+          border-radius: 8px;
+          padding: 20px;
+          min-width: 300px;
+          max-width: 500px;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        "
+      >
+        <div
+          id="popup-header"
+          style="
+            background: linear-gradient(to bottom, #0066cc, #003399);
+            color: white;
+            padding: 10px;
+            margin: -20px -20px 15px -20px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+          "
+        >
+          Notification
+        </div>
+        <div
+          id="popup-content"
+          style="
+            color: #000080;
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+          "
+        >
+          <!-- Message will be inserted here -->
+        </div>
+        <div style="text-align: center">
+          <button id="popup-ok-btn" class="submit-button" onclick="hidePopup()">
+            OK
+          </button>
+          <button
+            id="popup-cancel-btn"
+            class="submit-button"
+            onclick="hidePopup()"
+            style="display: none"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Biometric and OTP Modals -->
+    <div id="biometric-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">Biometric Verification</div>
+        <div class="modal-content">
+          <p>Place your finger on the scanner to verify your identity.</p>
+          <div class="biometric-scanner">
+            <div class="fingerprint"></div>
+            <div class="scan-line"></div>
+          </div>
+          <p id="biometric-status">Scanning...</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="otp-modal" class="modal-overlay">
+      <div class="modal-container">
+        <div class="modal-header">One-Time Password Verification</div>
+        <div class="modal-content">
+          <p>For your security, please enter the OTP displayed below.</p>
+          <p>Your OTP is: <strong id="otp-display"></strong></p>
+          <input type="text" id="otp-input" placeholder="Enter OTP" />
+        </div>
+        <div class="modal-footer">
+          <button id="otp-submit-btn" class="submit-button">Verify</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../src/js/utils.js"></script>
+    <script src="../src/js/ui.js"></script>
+    <script src="../src/js/banking.js"></script>
+    <script src="../src/js/auth.js"></script>
+    <script src="../src/js/main.js"></script>
+  </body>
+</html>

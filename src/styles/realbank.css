@@ -1,0 +1,217 @@
+body {
+  background: #f0f0f0;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11px;
+  margin: 0;
+  padding: 0;
+  color: #000080;
+}
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+  background: white;
+  border: 2px solid #c0c0c0;
+  margin-top: 10px;
+}
+
+.header {
+  background: linear-gradient(to bottom, #0066cc, #003399);
+  color: white;
+  padding: 8px;
+  border-bottom: 1px solid #999;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.nav-bar {
+  background: #e0e0e0;
+  border-bottom: 1px solid #999;
+  padding: 4px;
+}
+
+.nav-bar a {
+  color: #000080;
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.nav-bar a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  padding: 15px;
+  background: white;
+}
+
+.section-header {
+  background: #d0d0d0;
+  padding: 6px;
+  border: 1px solid #999;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #000080;
+}
+
+.form-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.form-table td {
+  padding: 4px;
+  vertical-align: top;
+  font-size: 11px;
+}
+
+.form-table .label-cell {
+  width: 120px;
+  font-weight: bold;
+  color: #000080;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.form-table input[type="text"],
+.form-table input[type="email"],
+.form-table input[type="tel"],
+.form-table input[type="date"],
+.form-table input[type="password"] {
+  width: 200px;
+  padding: 2px;
+  border: 1px solid #999;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11px;
+}
+
+.form-table input:focus {
+  border-color: #0066cc;
+  background: #f0f8ff;
+}
+
+.account-cards-container {
+  margin: 10px 0;
+}
+
+.account-cards {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.account-card {
+  display: table-cell;
+  width: 33.33%;
+  background: #f8f8f8;
+  border: 2px solid #c0c0c0;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: top;
+}
+
+.account-card:hover {
+  background: #e8f4fd;
+  border-color: #0066cc;
+}
+
+.account-card.selected {
+  background: #e8f4fd;
+  border-color: #0066cc;
+  border-width: 3px;
+}
+
+.account-card h3 {
+  margin: 0 0 5px 0;
+  font-size: 12px;
+  color: #000080;
+  font-weight: bold;
+}
+
+.account-card .price {
+  color: #cc0000;
+  font-weight: bold;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.account-card .description {
+  font-size: 10px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.account-card input[type="radio"] {
+  margin-bottom: 5px;
+}
+
+.checkbox-container {
+  margin: 10px 0;
+  padding: 5px;
+  background: #f0f0f0;
+  border: 1px solid #c0c0c0;
+}
+
+.checkbox-container input {
+  margin-right: 5px;
+}
+
+.submit-button {
+  background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+  border: 2px outset #c0c0c0;
+  padding: 6px 20px;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  color: #000080;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+
+.submit-button:hover {
+  background: linear-gradient(to bottom, #e0e0e0, #c0c0c0);
+}
+
+.submit-button:active {
+  border: 2px inset #c0c0c0;
+}
+
+.footer {
+  background: #e0e0e0;
+  border-top: 1px solid #999;
+  padding: 8px;
+  text-align: center;
+  font-size: 10px;
+  color: #666;
+}
+
+.required {
+  color: #cc0000;
+  font-weight: bold;
+}
+
+.info-box {
+  background: #ffffcc;
+  border: 1px solid #cccc99;
+  padding: 8px;
+  margin: 10px 0;
+  font-size: 10px;
+}
+
+.powered-by {
+  text-align: right;
+  font-size: 9px;
+  color: #999;
+  margin-top: 5px;
+}

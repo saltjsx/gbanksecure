@@ -1,12 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Gbank</title>
+    <link href="./src/styles/style.css" rel="stylesheet" type="text/css" />
   </head>
+
   <body>
-    <h1>insert homepage here</h1>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://pngimg.com/d/letter_g_PNG5.png"
+          alt="Gbank Logo"
+          class="logo"
+        />
+        <h1>Gbank</h1>
+      </div>
+
+      <div class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Accounts</a>
+        <a href="./account/sso.html">Member Login</a>
+      </div>
+
+      <div class="main-content">
+        <div class="section-header">
+          Welcome to Gbank Online Banking Services
+        </div>
+
+        <div class="info-box">
+          <strong>Gbank sigmas with you</strong> - We provide the best banking
+          experience for you and your family. Operating since 1816 with 209
+          years of trusted service!
+        </div>
+
+        <table class="form-table">
+          <tr>
+            <td class="label-cell">Why Choose Gbank?</td>
+            <td>
+              Gbank is cheap, reliable, and established. We've been operating
+              for 209 years with proven stability and customer satisfaction.
+            </td>
+          </tr>
+          <tr>
+            <td class="label-cell">Quick Access:</td>
+            <td>
+              <button
+                class="submit-button"
+                onclick="location.href='accounts.html'"
+              >
+                View Account Types
+              </button>
+              <button
+                class="submit-button"
+                onclick="location.href='./account/signup.html'"
+              >
+                Open New Account
+              </button>
+            </td>
+          </tr>
+        </table>
+
+        <div class="section-header">Featured Services</div>
+
+        <div class="account-cards-container">
+          <div class="account-cards">
+            <div class="account-card">
+              <h3>Online Banking</h3>
+              <div class="price">24/7 Access</div>
+              <div class="description">
+                Check balances, transfer funds, and pay bills anytime from
+                anywhere.
+              </div>
+            </div>
+
+            <div class="account-card">
+              <h3>Mobile Banking</h3>
+              <div class="price">Paid App</div>
+              <div class="description">
+                Full banking features on your smartphone with secure login and
+                notifications.
+              </div>
+            </div>
+
+            <div class="account-card">
+              <h3>Customer Support</h3>
+              <div class="price">Expert Help</div>
+              <div class="description">
+                Dedicated support team available Monday-Tuesday 8AM-9AM EST.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="powered-by">
+          Secure banking powered by RealBanking technology | New customers:
+          <a href="./account/signup.html">Sign Up Today</a>
+        </div>
+      </div>
+
+      <div class="footer">&copy; Gbank Kansas 2025</div>
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./src/js/utils.js"></script>
+    <script src="./src/js/ui.js"></script>
+    <script src="./src/js/banking.js"></script>
+    <script src="./src/js/auth.js"></script>
+    <script src="./src/js/main.js"></script>
   </body>
 </html>

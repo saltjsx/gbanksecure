@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Gbank - Account Types</title>
+    <link href="./src/styles/style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <img
+          src="https://pngimg.com/d/letter_g_PNG5.png"
+          alt="Gbank Logo"
+          class="logo"
+        />
+        <h1>Gbank</h1>
+      </div>
+
+      <div class="nav-bar">
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Accounts</a>
+        <a href="./account/sso.html">Member Login</a>
+      </div>
+
+      <div class="main-content">
+        <div class="section-header">Choose Your Gbank Account Type</div>
+
+        <div class="info-box">
+          <strong>The best bank accounts (for your grandma)</strong> - Select
+          from our range of competitive banking solutions designed to meet your
+          financial needs.
+        </div>
+
+        <div class="account-cards-container">
+          <div class="account-cards">
+            <div class="account-card">
+              <h3>SAVEveryday</h3>
+              <div class="price">$7.50/month</div>
+              <div class="description">
+                Save and spend! The one account to rule them all, and get 0.5%
+                interest p.a. Perfect for daily banking needs with no minimum
+                balance requirements.
+              </div>
+              <center>
+                <button
+                  class="submit-button"
+                  onclick="location.href='./account/signup.html'"
+                >
+                  Open Account
+                </button>
+              </center>
+            </div>
+
+            <div class="account-card">
+              <h3>Goon+ Super Saver</h3>
+              <div class="price">$80/week</div>
+              <div class="description">
+                3% interest! The top in THE COUNTRY! LIMITED TIME ONLY! Get now!
+                Premium savings solution for serious savers looking to maximize
+                returns.
+              </div>
+              <center>
+                <button
+                  class="submit-button"
+                  onclick="location.href='./account/signup.html'"
+                >
+                  Open Account
+                </button>
+              </center>
+            </div>
+
+            <div class="account-card">
+              <h3>Credit Account</h3>
+              <div class="price">$150/year</div>
+              <div class="description">
+                Guaranteed to make your mortgage cheaper. Professional credit
+                solutions with competitive rates and flexible terms for
+                qualified applicants.
+              </div>
+              <center>
+                <button
+                  class="submit-button"
+                  onclick="location.href='./account/signup.html'"
+                >
+                  Open Account
+                </button>
+              </center>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header">Account Comparison</div>
+
+        <table class="form-table">
+          <tr>
+            <td class="label-cell">SAVEveryday:</td>
+            <td>
+              Daily banking with debit card, online banking, 0.5% interest,
+              $7.50 monthly fee
+            </td>
+          </tr>
+          <tr>
+            <td class="label-cell">Goon+ Super Saver:</td>
+            <td>
+              High-yield savings, 3% interest rate, limited-time promotional
+              offer, $80 weekly fee
+            </td>
+          </tr>
+          <tr>
+            <td class="label-cell">Credit Account:</td>
+            <td>
+              Credit facilities, mortgage solutions, professional lending
+              services, $150 annual fee
+            </td>
+          </tr>
+        </table>
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="newsletter" name="newsletter" />
+          <label for="newsletter"
+            >I would like to receive account updates and promotional offers via
+            email</label
+          >
+        </div>
+
+        <div class="powered-by">
+          All accounts insured by Roblox Corporation | Questions?
+          <a href="./account/sso.html">Contact Support</a>
+        </div>
+      </div>
+
+      <div class="footer">&copy; Gbank Kansas 2025</div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./src/js/utils.js"></script>
+    <script src="./src/js/ui.js"></script>
+    <script src="./src/js/banking.js"></script>
+    <script src="./src/js/auth.js"></script>
+    <script src="./src/js/main.js"></script>
+  </body>
+</html>
